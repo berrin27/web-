@@ -1,0 +1,549 @@
+/* --- 1. RESET VE GENEL AYARLAR --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #fcfcfc; 
+    color: #1a1a1a; 
+    overflow-x: hidden; 
+}:root {
+    /* Gündüz Modu Renkleri */
+    --bg-main: #fcfcfc;
+    --text-hero: #080808;     
+    --text-subtitle: #1b1b19;
+    --card-bg: #f9f9f9;
+    --accent: #82b5eb;
+}
+
+body.dark-mode {
+    /* Gece Modu Renkleri */
+    --bg-main: #0c0c0c;
+    --text-hero: #ffffff;     
+    --text-subtitle: #cccccc;
+    --card-bg: #1a1a1a;
+    --accent: #82b5eb;
+}
+a { text-decoration: none; color: inherit; }
+
+/* --- 2. HERO SECTION --- */
+.header {
+  height: 100vh;
+  background-size: cover;
+  background-position: 57% center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-attachment: fixed;
+}
+
+.header-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 60%);
+  z-index: 2;
+}
+
+.header .caption {
+  text-align: center;
+  color: #fff;
+  z-index: 11;
+  position: relative;
+}
+
+/* -------- ANIMASYONLAR -------- */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+.scroll-down-arrow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 22px;
+  text-decoration: none;
+  animation: bounce 1.8s infinite;
+  transition: color 0.3s ease;
+}
+
+.scroll-down-arrow:hover {
+  color: #fff;
+}
+
+/* Social Icons Hover Efekti */
+.social-icon a span {
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.social-icon a:hover span {
+  background: rgba(130, 181, 235, 0.6) !important;
+  transform: scale(1.15);
+  box-shadow: 0 0 15px rgba(130, 181, 235, 0.4);
+}
+.header .caption h5 {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.header .caption h1 {
+  font-weight: 200;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1.2;
+}
+.header .social-icon {
+  margin-top: 30px;
+}
+.header .social-icon a {
+  display: inline-block;
+  margin: 0 5px;
+}
+.header .social-icon span {
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: inline-block;
+  transition: all 0.3s;
+}
+.header .social-icon span:hover {
+  background: #82b5eb;
+  color: #fff;
+}
+
+/* Typography Animation (cd-headline clip) */
+.cd-words-wrapper {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  min-width: 0;
+}
+.cd-words-wrapper b {
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+  left: 0;
+  top: 0;
+}
+.cd-words-wrapper b.is-visible { 
+  position: relative; 
+  animation: typing 2.5s steps(12) 0.8s both;
+}
+.cd-headline { font-size: inherit; }
+.cd-headline.clip span { display: inline-block; padding: .2em 0; }
+.cd-headline.clip .cd-words-wrapper { overflow: hidden; vertical-align: top; }
+.cd-headline.clip .cd-words-wrapper::after {
+  display: none;
+}
+.cd-headline.clip .cd-words-wrapper.is-finished::after { display: none; }
+.cd-headline.clip b { opacity: 0; }
+.cd-headline b.is-visible { opacity: 1; }
+
+/* Scroll Down Arrow */
+.scroll-down-arrow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 22px;
+  text-decoration: none;
+  animation: bounce 1.8s infinite;
+}
+.scroll-down-arrow:hover { color: #fff; }
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+/* --- 3. SKILLS BAR --- */
+.skills-bar {
+    width: 100%; padding: 25px 0;
+    background: #eeeeee; border-bottom: 1px solid #ddd;
+    overflow: hidden; white-space: nowrap;
+}
+.skills-track {
+    display: inline-block;
+    animation: scrollSkills 25s linear infinite;
+}
+.skills-track span { font-size: 1.1rem; font-weight: 700; color: #888; margin: 0 40px; }
+@keyframes scrollSkills { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* --- 4. NAVIGATION --- */
+.menu {
+    display: flex; justify-content: center; gap: 50px;
+    padding: 30px 50px; background: white;
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+}
+.menu-item { font-weight: 700; font-size: 0.9rem; color: #888; transition: 0.3s; }
+.menu-item:hover { color: #1a1a1a; transform: translateY(-2px); }
+
+/* Language Switcher Button */
+.lang-btn {
+    position: fixed;
+    top: 20px;
+    right: 60px;
+    z-index: 999;
+    padding: 8px 16px;
+    background: rgba(130, 181, 235, 0.15);
+    border: 1.5px solid #82b5eb;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #82b5eb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background: #82b5eb;
+    color: white;
+    transform: scale(1.05);
+}
+
+body.dark-mode .lang-btn {
+    border-color: #82b5eb;
+    background: rgba(130, 181, 235, 0.2);
+    color: #82b5eb;
+}
+
+body.dark-mode .lang-btn:hover {
+    background: #82b5eb;
+    color: #0c0c0c;
+}
+
+/* --- 5. EXPERTISE SECTION --- */
+.expertise-section { padding: 120px 10%; background: white; }
+.section-tag { font-size: 0.8rem; color: #82b5eb; letter-spacing: 2px; margin-bottom: 15px; }
+.section-desc { font-size: 2.2rem; font-weight: 700; margin-bottom: 60px; max-width: 800px; }
+
+.expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.expert-card {
+    padding: 50px 35px; background: #f9f9f9; border-radius: 20px;
+    transition: 0.4s; border: 1px solid #eee;
+}
+.expert-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+.expert-card.highlight { background: var(--card-bg); color: var(--text-primary); }
+.expert-card h3 { font-size: 1.6rem; margin-bottom: 20px; }
+.card-tags { list-style: none; display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.card-tags li { font-size: 0.75rem; background: rgba(0,0,0,0.05); padding: 5px 12px; border-radius: 20px; color: #888; }
+.expert-card.highlight .card-tags li { background: rgba(0,0,0,0.1); color: #555; }
+
+/* --- 6. ABOUT SECTION --- */
+.about-modern { padding: 150px 10%; border-top: 1px solid #eee; }
+.about-container { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; }
+.about-content { display: flex; flex-direction: column; justify-content: flex-start; }
+.about-text-content { display: flex; flex-direction: column; }
+.about-label { font-weight: 700; color: #82b5eb; letter-spacing: 2px; }
+.about-title { font-size: 3rem; font-weight: 900; margin-bottom: 40px; line-height: 1.1; }
+.about-description { font-size: 1.2rem; color: #555; line-height: 1.6; margin-bottom: 25px; }
+
+/* --- 7. BUTTONS & FOOTER --- */
+.btn-modern {
+    display: inline-flex; padding: 14px 30px; border: 1px solid #1a1a1a;
+    border-radius: 50px; font-weight: 700; font-size: 0.85rem; transition: 0.4s;
+    cursor: pointer; background: transparent;
+}
+.btn-modern:hover { background: #1a1a1a; color: white; }
+.btn-small-cert { margin-top: 20px; border-color: #82b5eb; color: #82b5eb; font-size: 0.7rem; }
+.btn-contact { background: #82b5eb; color: white; border: none; }
+
+.contact-footer { padding: 120px 10%; background: #f5f5f5; }
+.contact-title { font-size: clamp(2rem, 8vw, 4.5rem); font-weight: 900; margin-bottom: 50px; line-height: 1; }
+.contact-actions { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+.footer-social-minimal i { font-size: 1.8rem; color: #aaa; transition: 0.3s; }
+.footer-social-minimal i:hover { color: #1a1a1a; }/* Geçiş Yumuşaklığı */
+* { transition: background-color 0.4s ease, color 0.4s ease; }
+
+/* Gündüz (Varsayılan) Modu */
+body.light-mode {
+    background-color: #fcfcfc;
+    color: #1a1a1a;
+}
+
+/* Gece Modu Ayarları */
+body.dark-mode {
+    background-color: #0c0c0c;
+    color: #fcfcfc;
+}
+body.dark-mode .expert-card.highlight {
+    background-color: #1a1a1a; /* Koyu modda siyah kalmaya devam eder */
+    color: #ffffff;
+}
+body.dark-mode .expert-card.highlight .card-tags li {
+    background: rgba(255,255,255,0.15);
+    color: #ddd;
+}
+/* Gece Modunda Kart ve Menü Renkleri */
+body.dark-mode .expert-card { background-color: #1a1a1a; border-color: #2a2a2a; }
+body.dark-mode .skills-bar { background-color: #141414; border-color: #2a2a2a; }
+body.dark-mode .menu-modern { background-color: #0c0c0c; border-color: #2a2a2a; }
+
+/* Gece/Gündüz Buton Stili */
+.mode-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 999;
+    padding: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(130, 181, 235, 0.2);
+    backdrop-filter: blur(5px);
+    font-size: 1.2rem;
+}/* 1. Renk Değişkenlerini Tanımlıyoruz */
+:root {
+    --bg-color: #fcfcfc;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --card-bg: #f9f9f9;
+    --card-border: #eeeeee;
+    --accent-color: #82b5eb;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+}
+
+/* 2. Gece Modu Renklerini Tanımlıyoruz */
+body.dark-mode {
+    --bg-color: #0c0c0c;
+    --text-primary: #fcfcfc;
+    --text-secondary: #aaaaaa;
+    --card-bg: #1a1a1a;
+    --card-border: #333333;
+    --nav-bg: rgba(12, 12, 12, 0.9);
+}
+
+/* 3. Tüm Elementleri Değişkenlere Bağlıyoruz */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    transition: all 0.4s ease; /* Her şeyin yumuşak değişmesi için */
+}
+
+
+.expert-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+}
+
+.expert-card p { color: var(--text-secondary); }
+
+.about-modern { background-color: var(--bg-color); }
+.about-description { color: var(--text-secondary); }
+.about-title { color: var(--text-primary); }
+
+body.dark-mode .about-title {
+    color: #ffffff !important;
+}
+
+.menu { background-color: var(--nav-bg); }
+
+/* Gece modunda exclusion efektini korumak için */
+body.dark-mode .hero-name {
+   color: #ffffff !important;
+    opacity: 0.7 !important; /* Gece modunda parlaması için */
+
+
+}body.dark-mode .btn-modern {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .btn-modern:hover {
+    background-color: var(--text-primary);
+    color: var(--bg-color);
+}
+
+body.dark-mode .footer-social-minimal i {
+    color: var(--text-secondary);
+}body.dark-mode .btn-contact {
+    background-color: #82b5eb; /* Mavi tonunu koru */
+    color: #0c0c0c; /* İçindeki yazıyı siyah yap ki kontrast oluşsun */
+    border: none;
+    font-weight: 900;
+}
+/* KARANLIK MODDA UZMANLIK YAZISI DÜZELTMESİ */
+body.dark-mode .expertise-section, 
+body.dark-mode .section-header {
+    background-color: transparent !important;
+}
+
+body.dark-mode .section-desc {
+    color: #ffffff !important; /* Yazıyı zorla beyaz yapar */
+    opacity: 1 !important;    /* Silikleşmeyi engeller */
+}
+
+body.dark-mode .section-tag {
+    color: var(--accent) !important; /* '01 // UZMANLIK' yazısı */
+}
+
+body.dark-mode .btn-contact:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}/* GECE MODUNDA ÖZEL YAZI DÜZELTMELERİ */
+
+/* 1. Ana İsim (Hero Name) Düzeltmesi */
+body.dark-mode .hero-name {
+    color: #ffffff !important;
+    opacity: 0.35 !important;    /* Gece modunda parlaması için artırdık */
+}
+/* 2. Birlikte Çalışalım (Contact Title) Düzeltmesi */
+body.dark-mode .contact-title {
+    color: #ffffff !important; /* Yazının tamamen görünür olmasını sağlar */
+}
+
+/* 3. "Teknoloji &" Alt Başlık Düzeltmesi */
+body.dark-mode .hero-subtitle {
+    color: #cccccc !important; /* Gri tonunu biraz açarak okunabilirliği artırır */
+}
+
+/* 4. Skills Bar Yazıları */
+body.dark-mode .skills-track span {
+    color: #ffffff !important;
+    opacity: 0.8;
+}body.dark-mode .contact-footer {
+    background-color: #111111 !important; /* Alt kısım koyu gri */
+}
+
+body.dark-mode .about-modern {
+    background-color: #0c0c0c !important;
+}
+
+body.dark-mode .hero-container {
+    background-color: #0c0c0c !important;
+}
+/* Sadece Hikayem (About) kısmını etkileyen mobil ayar */
+@media screen and (max-width: 768px) {
+    .about-container {
+        display: flex;          /* Grid yerine esnek kutu yapısına geç */
+        flex-direction: column; /* İçeriği alt alta diz (02 // HİKAYEM üstte, metin altta) */
+        gap: 20px;
+        width: 100%;            /* Taşmayı engellemek için genişliği sabitle */
+    }
+
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-modern {
+        padding: 60px 20px;     /* Kenar boşluklarını mobil için optimize et */
+    }
+
+    .about-title {
+        font-size: 1.8rem;      /* Başlığın ekrana sığması için boyutu küçült */
+        width: 100%;
+        line-height: 1.3;
+    }
+
+    .about-text-wrapper {
+        width: 100%;            /* Metin kutusunun dışarı taşmasını engelle */
+    }
+}
+
+/* --- 8. ÖZGEÇMİŞ (CV) KUTUSU --- */
+.cv-button {
+    display: inline-block;
+    padding: 16px 28px;
+    border: 2px solid var(--accent);
+    border-radius: 50px;
+    background: transparent;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    font-weight: 700;
+}
+
+.cv-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    z-index: -1;
+    transition: left 0.4s ease;
+}
+
+.cv-button:hover {
+    transform: scale(1.08) translateY(-3px);
+    filter: drop-shadow(0 8px 20px rgba(130, 181, 235, 0.4));
+    border-color: var(--accent);
+}
+
+.cv-button:hover::before {
+    left: 0;
+}
+
+.cv-button:hover .buton-bg {
+    color: #0c0c0c;
+    filter: invert(1);
+}
+
+body.dark-mode .cv-button:hover .buton-bg {
+    color: #fcfcfc;
+    filter: invert(1) brightness(1.2);
+}
+
+/* --- 7. BUTTONS & FOOTER --- */
+
+/* Typewriter Animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
