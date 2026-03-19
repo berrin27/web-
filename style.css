@@ -454,6 +454,43 @@ body.dark-mode .hero-container {
 }
 /* Sadece Hikayem (About) kısmını etkileyen mobil ayar */
 @media screen and (max-width: 768px) {
+    /* Menu Mobile */
+    .menu {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 15px 10px;
+        flex-wrap: wrap;
+    }
+
+    .menu-item {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+    }
+
+    .lang-btn {
+        position: fixed;
+        top: 8px;
+        right: 5px;
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        z-index: 999;
+        white-space: nowrap;
+        max-width: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Skills Bar Mobile */
+    .skills-bar {
+        padding: 15px 0;
+    }
+
+    .skills-track span {
+        font-size: 0.75rem;
+        margin: 0 20px;
+    }
+
     .about-container {
         display: flex;          /* Grid yerine esnek kutu yapısına geç */
         flex-direction: column; /* İçeriği alt alta diz (02 // HİKAYEM üstte, metin altta) */
@@ -546,4 +583,39 @@ body.dark-mode .cv-button:hover .buton-bg {
   50% {
     opacity: 0;
   }
+}
+
+/* Extra Small Screens (< 480px) */
+@media screen and (max-width: 480px) {
+    .menu {
+        gap: 8px;
+        padding: 10px 5px;
+    }
+
+    .menu-item {
+        font-size: 0.6rem;
+        padding: 3px 5px;
+    }
+
+    .lang-btn {
+        position: fixed;
+        top: 6px;
+        right: 3px;
+        padding: 3px 6px;
+        font-size: 0.55rem;
+        white-space: nowrap;
+        max-width: 50px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 1px solid #82b5eb;
+    }
+
+    .skills-track span {
+        font-size: 0.65rem;
+        margin: 0 12px;
+    }
+
+    .skills-bar {
+        padding: 10px 0;
+    }
 }
