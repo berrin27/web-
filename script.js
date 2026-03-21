@@ -26,6 +26,11 @@ function updateLanguage() {
             el.innerHTML = html;
         }
     });
+    const cvLink = document.getElementById('cv-link');
+    if (cvLink) {
+        const file = currentLanguage === 'tr' ? cvLink.getAttribute('data-tr-file') : cvLink.getAttribute('data-en-file');
+        cvLink.setAttribute('href', file);
+    }
 }
 
 function updateLangBtn() {
