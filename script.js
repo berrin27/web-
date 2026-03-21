@@ -26,13 +26,13 @@ function updateLanguage() {
             el.innerHTML = html;
         }
     });
-    const cvLink = document.getElementById('cv-link');
+     const cvLink = document.getElementById('cv-link');
     if (cvLink) {
-        const file = currentLanguage === 'tr' ? cvLink.getAttribute('data-tr-file') : cvLink.getAttribute('data-en-file');
+        // Burada data attribute'lardan gelen isimleri alıyoruz
+        const file = currentLanguage === 'tr' ? 'ozgecmis.pdf' : 'resume.pdf';
         cvLink.setAttribute('href', file);
     }
 }
-
 function updateLangBtn() {
     const btn = document.querySelector('.lang-btn');
     if (btn) btn.textContent = currentLanguage === 'tr' ? '🌐 EN' : '🌐 TR';
